@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deutsch Lückentext Übung</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; text-align: center; }
+        input { width: 100px; padding: 5px; margin: 5px; }
+        button { padding: 10px; margin-top: 10px; cursor: pointer; }
+        .correct { color: green; }
+        .incorrect { color: red; }
+    </style>
+</head>
+<body>
+
+<h2>Deutsch Lückentext Übung</h2>
+<p>Fülle die Lücken mit der richtigen Verbform aus:</p>
+
+<div id="exercise">
+    <p>1. Er <input type="text" id="q1"> (spielen) Fußball am Wochenende.</p>
+    <p>2. Ihr <input type="text" id="q2"> (wohnen) in Berlin, oder?</p>
+    <p>3. Wir <input type="text" id="q3"> (lernen) Deutsch zusammen.</p>
+    <p>4. Ich <input type="text" id="q4"> (kaufen) einen neuen Computer.</p>
+    <p>5. <input type="text" id="q5"> macht die Hausaufgaben.</p>
+    <p>A. Ich B. Du C. Er D. Ihr</p>
+</div>
+
+<button onclick="checkAnswers()">Antworten prüfen</button>
+
+<p id="result"></p>
+
+<script>
+    function checkAnswers() {
+        let answers = ["spielt", "wohnt", "lernen", "kaufe", "C"];
+        let correctCount = 0;
+
+        for (let i = 0; i < answers.length; i++) {
+            let input = document.getElementById(`q${i + 1}`);
+            if (input.value.trim() === answers[i]) {
+                input.classList.add("correct");
+                input.classList.remove("incorrect");
+                correctCount++;
+            } else {
+                input.classList.add("incorrect");
+                input.classList.remove("correct");
+            }
+        }
+
+        document.getElementById("result").innerText = `Du hast ${correctCount} von 5 richtig!`;
+    }
+</script>
+
+</body>
+</html>

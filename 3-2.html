@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>德语语法选择题练习</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 0 20px;
+      line-height: 1.6;
+    }
+    h2 {
+      text-align: center;
+    }
+    .question {
+      margin: 20px 0;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .options label {
+      display: block;
+      margin: 5px 0;
+      cursor: pointer;
+    }
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .correct {
+      color: green;
+    }
+    .incorrect {
+      color: red;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>德语语法选择题练习</h2>
+
+  <!-- 题目 1 -->
+  <div class="question">
+    <p>1. Du______(sitzen) auf dem Sofa.</p>
+    <div class="options">
+      <label>
+        <input type="radio" name="q1" value="A"> A. sitzt
+      </label>
+      <label>
+        <input type="radio" name="q1" value="B"> B. sitzst
+      </label>
+      <label>
+        <input type="radio" name="q1" value="C"> C. sitzest
+      </label>
+    </div>
+    <div id="feedback1" class="feedback"></div>
+  </div>
+
+  <!-- 题目 2 -->
+  <div class="question">
+    <p>2. Sie (单数)______(öffnen) die Tür.</p>
+    <div class="options">
+      <label>
+        <input type="radio" name="q2" value="A"> A. öffnet
+      </label>
+      <label>
+        <input type="radio" name="q2" value="B"> B. öffnest
+      </label>
+      <label>
+        <input type="radio" name="q2" value="C"> C. öffnt
+      </label>
+    </div>
+    <div id="feedback2" class="feedback"></div>
+  </div>
+
+  <!-- 题目 3 -->
+  <div class="question">
+    <p>3. Ihr______(schießen) Tore im Spiel.</p>
+    <div class="options">
+      <label>
+        <input type="radio" name="q3" value="A"> A. schießt
+      </label>
+      <label>
+        <input type="radio" name="q3" value="B"> B. schieβt
+      </label>
+      <label>
+        <input type="radio" name="q3" value="C"> C. schieβst
+      </label>
+    </div>
+    <div id="feedback3" class="feedback"></div>
+  </div>
+
+  <button onclick="checkAnswers()">提交所有答案</button>
+  <p id="totalResult"></p>
+
+  <script>
+    function checkAnswers() {
+      let totalCorrect = 0;
+      
+      // 题目 1 检查
+      let q1 = document.getElementsByName("q1");
+      let answer1 = ""; 
+      for (let radio of q1) {
+        if (radio.checked) {
+          answer1 = radio.value;
+          break;
+        }
+      }
+      let feedback1 = document.getElementById("feedback1");
+      if (answer1 === "A") {
+        feedback1.innerHTML = "<span class='correct'>正确！答案：sitzt （词干以 -z 结尾，省去 -s）</span>";
+        totalCorrect++;
+      } else {
+        feedback1.innerHTML = "<span class='incorrect'>错误！正确答案是 A. sitzt</span>";
+      }
+      
+      // 题目 2 检查
+      let q2 = document.getElementsByName("q2");
+      let answer2 = "";
+      for (let radio of q2) {
+        if (radio.checked) {
+          answer2 = radio.value;
+          break;
+        }
+      }
+      let feedback2 = document.getElementById("feedback2");
+      if (answer2 === "A") {
+        feedback2.innerHTML = "<span class='correct'>正确！答案：öffnet （词干以 -n 结尾，加 -e-）</span>";
+        totalCorrect++;
+      } else {
+        feedback2.innerHTML = "<span class='incorrect'>错误！正确答案是 A. öffnet</span>";
+      }
+      
+      // 题目 3 检查
+      let q3 = document.getElementsByName("q3");
+      let answer3 = "";
+      for (let radio of q3) {
+        if (radio.checked) {
+          answer3 = radio.value;
+          break;
+        }
+      }
+      let feedback3 = document.getElementById("feedback3");
+      if (answer3 === "B") {
+        feedback3.innerHTML = "<span class='correct'>正确！答案：schieβt （词干以 -β 结尾，ihr 直接加 -t）</span>";
+        totalCorrect++;
+      } else {
+        feedback3.innerHTML = "<span class='incorrect'>错误！正确答案是 B. schieβt</span>";
+      }
+      
+      // 显示总体正确情况
+      let totalResult = document.getElementById("totalResult");
+      totalResult.innerHTML = `<strong>你共答对了 ${totalCorrect} / 3 题。</strong>`;
+    }
+  </script>
+
+</body>
+</html>

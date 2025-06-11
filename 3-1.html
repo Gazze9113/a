@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>德语语法练习</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 40px auto;
+      text-align: center;
+    }
+    input, button {
+      padding: 8px;
+      margin: 5px;
+    }
+    .correct {
+      color: green;
+      font-weight: bold;
+    }
+    .incorrect {
+      color: red;
+      font-weight: bold;
+    }
+    .question {
+      margin: 20px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>德语语法练习</h2>
+
+  <!-- 填空题部分 -->
+  <div id="fill-in">
+    <h3>填空题</h3>
+    <div class="question">
+      <p>
+        1. Du <input type="text" id="q1"> (tanzen) gut!
+        <span id="feedback1"></span>
+      </p>
+    </div>
+    <div class="question">
+      <p>
+        2. Ihr <input type="text" id="q2"> (arbeiten) im Büro.
+        <span id="feedback2"></span>
+      </p>
+    </div>
+  </div>
+
+  <!-- 判断题部分 -->
+  <div id="true-false">
+    <h3>判断题</h3>
+    <div class="question">
+      <p>
+        3. 动词 atmen(呼吸) 的词干以 -m 结尾，因此其第三人称单数变位应为 er atmt.
+      </p>
+      <p>
+        <label>
+          <input type="radio" name="q3" value="true"> 正确
+        </label>
+        <label>
+          <input type="radio" name="q3" value="false"> 错误
+        </label>
+        <span id="feedback3"></span>
+      </p>
+    </div>
+    <div class="question">
+      <p>
+        4. 动词 reisen(旅行) 的词干以 -s 结尾，因此其第二人称单数变位应为 du reist.
+      </p>
+      <p>
+        <label>
+          <input type="radio" name="q4" value="true"> 正确
+        </label>
+        <label>
+          <input type="radio" name="q4" value="false"> 错误
+        </label>
+        <span id="feedback4"></span>
+      </p>
+    </div>
+  </div>
+
+  <!-- 全部提交按钮 -->
+  <button onclick="checkAnswers()">提交所有答案</button>
+  <p id="totalResult"></p>
+
+  <script>
+    function checkAnswers() {
+      let totalCorrect = 0;
+
+      // 填空题 Q1
+      let answer1 = document.getElementById("q1").value.trim();
+      let feedback1 = document.getElementById("feedback1");
+      if(answer1 === "tanzt") {
+        feedback1.innerHTML = "<span class='correct'> 正确！(词干以 -z 结尾，规则1)</span>";
+        totalCorrect++;
+      } else {
+        feedback1.innerHTML = "<span class='incorrect'> 错误！正确答案：tanzt</span>";
+      }
+
+      // 填空题 Q2
+      let answer2 = document.getElementById("q2").value.trim();
+      let feedback2 = document.getElementById("feedback2");
+      if(answer2 === "arbeitet") {
+        feedback2.innerHTML = "<span class='correct'> 正确！(词干以 -t 结尾，规则2)</span>";
+        totalCorrect++;
+      } else {
+        feedback2.innerHTML = "<span class='incorrect'> 错误！正确答案：arbeitet</span>";
+      }
+
+      // 判断题 Q3（正确答案应为“错误”）
+      let radios3 = document.getElementsByName("q3");
+      let selected3 = "";
+      for (let radio of radios3) {
+        if (radio.checked) {
+          selected3 = radio.value;
+          break;
+        }
+      }
+      let feedback3 = document.getElementById("feedback3");
+      if(selected3 === "false") {
+        feedback3.innerHTML = "<span class='correct'> 正确！正确变位是 er atmet (添加 -et 保持发音流畅)</span>";
+        totalCorrect++;
+      } else {
+        feedback3.innerHTML = "<span class='incorrect'> 错误！正确答案应选择‘错误’</span>";
+      }
+
+      // 判断题 Q4（正确答案应为“正确”）
+      let radios4 = document.getElementsByName("q4");
+      let selected4 = "";
+      for (let radio of radios4) {
+        if (radio.checked) {
+          selected4 = radio.value;
+          break;
+        }
+      }
+      let feedback4 = document.getElementById("feedback4");
+      if(selected4 === "true") {
+        feedback4.innerHTML = "<span class='correct'> 正确！词干以 -s 结尾时，du 变位省略 -s，直接加 -t</span>";
+        totalCorrect++;
+      } else {
+        feedback4.innerHTML = "<span class='incorrect'> 错误！正确答案应选择‘正确’</span>";
+      }
+
+      // 显示总体结果
+      let totalResult = document.getElementById("totalResult");
+      totalResult.innerHTML = `<strong>你共答对了 ${totalCorrect} / 4 题。</strong>`;
+    }
+  </script>
+
+</body>
+</html>
